@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-gorm/options/gorm.proto";
+
+package responsetimesimulation.service;
+
+option go_package = "./server/pb";
+
+message Example {
+    option (gorm.opts) = {
+        ormable:true,
+        table: "example_table",
+    };
+
+    uint64 id = 1 [(gorm.field).tag = {primary_key: true not_null: true}];
+    google.protobuf.Timestamp cratedAt = 2;
+    google.protobuf.Timestamp updatedAt = 3;
+    google.protobuf.Timestamp deletedAt = 4;
+}

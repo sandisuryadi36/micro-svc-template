@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package responsetimesimulation.service;
+
+option go_package = "./server/pb";
+
+import "google/api/annotations.proto";
+// import "google/protobuf/timestamp.proto";
+
+service ApiService {
+	rpc Hello(Empty) returns (HelloResponse) {
+		option (google.api.http) = {
+            get: "/api/hello"
+			// body: "*"
+		};
+	}
+}
+
+message Empty {
+}
+
+
+message HelloResponse {
+	string message = 1;
+	StandardResponse http_status= 2;
+}
+
+message StandardResponse {
+	bool success = 1;
+	uint64 code = 2;
+	string message = 3;
+}
